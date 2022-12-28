@@ -2,11 +2,13 @@
 <html>
   <head>
 	<meta charset="UTF-8">
+	  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<title>School Week to do list</title>
 	<style>
-	  ul li.checked {
+	  ul li.check {
 		text-decoration: line-through;
 	  }
 
@@ -26,7 +28,7 @@
   </head>
   <body>
 	<div class="container">
-	  <h2 class="col-12 ml-4 mt-2 mb-2 bg-primary text-light"> School Week To Do List</h2>
+	  <h2 class="col-12 ml-4 mt-2 mb-2 bg-primary text-light text-center" id="gangstaMikeSICA"> School Week To Do List</h2>
 	  <h5> Monday</h5>
 	  <div class="form-check" id="monday"><label class="form-check-label">
 		  <ul id="mondayList">
@@ -76,20 +78,19 @@
 	  </div><button onclick="addItem('')" class="bg-primary text-light" id="addbtn"> Add Task </button>
 	</div>
 	<script>
-		var myNodelist = document.getElementsByTagName("LI");
-		var i;
+		let myNodelist = document.getElementsByTagName("LI");
+		let i;
 		for (i = 0; i < myNodelist.length; i++) {
-			var span = document.createElement("SPAN");
-			var txt = document.createTextNode("\u00D7");
+			let span = document.createElement("SPAN");
+			let txt = document.createTextNode("\u00D7");
 			span.className = "remover";
 			span.appendChild(txt);
 			myNodelist[i].appendChild(span);
 		}
-		var remover = document.getElementsByClassName("remover");
-		var i;
+		let remover = document.getElementsByClassName("remover");
 		for (i = 0; i < remover.length; i++) {
 			remover[i].onclick = function() {
-				var div = this.parentElement;
+				let div = this.parentElement;
 				div.style.display = "none";
 			}
 		}
@@ -106,25 +107,53 @@
 				document.getElementById(selectedOption + "List").appendChild(li);
 				document.getElementById("task").value = "";
 			}
-			var span = document.createElement("SPAN");
-			var txt = document.createTextNode("\u00D7");
+			let span = document.createElement("SPAN");
+			let txt = document.createTextNode("\u00D7");
 			span.className = "remover";
 			span.appendChild(txt);
 			li.appendChild(span);
 			for (i = 0; i < remover.length; i++) {
 			  remover[i].onclick = function() {
-				var div = this.parentElement;
+				let div = this.parentElement;
 				div.style.display = "none";
 			  }
 			}
 		}
 		
-		var list = document.querySelector('body');
+		let list = document.querySelector('body');
 		list.addEventListener('click', function(ev) {
 			if (ev.target.tagName === 'LI') {
-  				ev.target.classList.toggle('checked');
+  				ev.target.classList.toggle('check');
 			}
 		}, false);
 	</script>
+	<script>
+		$(document).ready(function() {
+			  let element = $("#gangstaMikeSICA");
+			  element.animate({  
+				fontSize: "50",
+			  }, 6000);
+			});	
+	$(document).ready(function() {
+			  let element = $("#addbtn");
+			  element.animate({ 
+				fontSize: "25",
+			  }, 3000);
+			});
+		function getRandomColor() {
+		  let letters = '0123456789ABCDEF';
+		  let color = '#';
+		  for (let i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		  }
+		  return color;
+		}
+	let = randomColor = getRandomColor();
+		$(document).ready(function() {
+			  let element = $("h5");
+			  let color = getRandomColor();
+			  element.css("color", color);
+			});
+	 </script>
   </body>
 </html>
